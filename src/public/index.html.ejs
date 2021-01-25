@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- This file is the template for "www/index.html". Modify it to fit your needs -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+
+  <!-- The following EJS lines include the necessary CSS and JS
+  from Monaca (cordova.js/ loader.js) in production mode -->
+<% for (var dep in htmlWebpackPlugin.options.externalJS) { %>
+  <script type="text/javascript" src="<%= htmlWebpackPlugin.options.externalJS[dep] %>"></script><% } %>
+<% for (var dep in htmlWebpackPlugin.options.externalCSS) { %>
+  <link rel="stylesheet" type="text/css" href="<%= htmlWebpackPlugin.options.externalCSS[dep] %>"><% } %>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firestore;
+
+  var onDeviceReady = function () {
+  var firebaseConfig = {
+    apiKey: "AIzaSyB0OkHUcDuuomBuoYqfbAHJmix-L7dJo_s",
+    authDomain: "monaca-15668.firebaseapp.com",
+    projectId: "monaca-15668",
+    storageBucket: "monaca-15668.appspot.com",
+    messagingSenderId: "708611657250",
+    appId: "1:708611657250:web:0aeb0addd704431a92447b"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  firestore = firebase.firestore();
+  };
+  document.addEventListener(
+    window.cordova ? "deviceready" : "DOMContentLoaded",
+    onDeviceReady,
+    false
+  );
+</script>
+
+</head>
+<body>
+  <div id="app"></div>
+</body>
+</html>
